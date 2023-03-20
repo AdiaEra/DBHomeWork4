@@ -30,10 +30,10 @@ WHERE year_of_release NOT IN (2020);
 SELECT name_nickname
 FROM performer
 WHERE name_nickname NOT IN (SELECT name_nickname
-							FROM performer p
-							JOIN album_performer ap ON p.id = ap.performer_id 
-							JOIN album a ON ap.album_id = a.id
-							WHERE year_of_release = 2020);
+			    FROM performer p
+			    JOIN album_performer ap ON p.id = ap.performer_id 
+			    JOIN album a ON ap.album_id = a.id
+			    WHERE year_of_release = 2020);
               
 --5 Названия сборников, в которых присутствует конкретный исполнитель
 SELECT DISTINCT c.title 
@@ -86,7 +86,7 @@ FROM album a
 JOIN track t ON a.id = t.album_id
 GROUP BY a.title
 HAVING COUNT(t.title) = (SELECT COUNT(t.title)
-						 FROM track t JOIN album a ON t.album_id = a.id
-						 GROUP BY a.title
-						 ORDER BY COUNT(t.title)
-						 LIMIT 1);
+			 FROM track t JOIN album a ON t.album_id = a.id
+			 GROUP BY a.title
+			 ORDER BY COUNT(t.title)
+			 LIMIT 1);
